@@ -60,7 +60,8 @@
         } "
         class="px-8 py-3 mt-10 text-2xl font-bold text-white rounded-full bg-brand-main focus:outlined-none"
       >
-        Entrar
+        <icon v-if="state.isLoading" name="loading" class="animate-spin" />
+        <span v-else >Entrar</span>
       </button>
     </form>
   </div>
@@ -70,10 +71,20 @@
 import { reactive } from '@vue/reactivity'
 import { useField } from 'vee-validate'
 import useModal from '../../hooks/useModal'
+import Icon from '../Icon'
 import { validateEmptyAndLength3, validateEmptyAndEmail } from '../../utils/validators'
+import services from '../../services'
+import { useRouter } from 'vue-router'
+import { useToast } from 'vue-toastification'
+
 export default {
+  components: {
+    Icon
+  },
   setup () {
+    const router = useRouter()
     const modal = useModal()
+    const toast = useToast()
 
     const {
       value: emailValue,
@@ -98,9 +109,40 @@ export default {
       }
     })
 
-    function handleSubmit () {
-      console.log('submited')
-      console.log(state.password)
+    async function handleSubmit () {
+      try {
+        toast.clear()
+        state.isLoading = true
+        const { data, errors } = await services.auth.login({
+          email: state.email.value,
+          password: state.password.value
+        })
+
+        if (!errors) {
+          window.localStorage.setItem('token', data.token)
+          router.push({ name: 'Feebacks' })
+          modal.close()
+          return
+        }
+
+        if (errors.status === 404) {
+          toast.error('E-mail não encontrado')
+        }
+
+        if (errors.status === 401) {
+          toast.error('E-mail/senha inválido')
+        }
+
+        if (errors.status === 400) {
+          toast.error('Ocorreu um erro ao fazer o login')
+        }
+
+        state.isLoading = false
+      } catch (error) {
+        state.isLoading = false
+        state.hasErrors = !!error
+        toast.error('Ocorreu um erro ao fazer o login')
+      }
     }
 
     return {
