@@ -1,23 +1,28 @@
 <template>
-  <h1> Bem-Vindo {{ state.user.name }} </h1>
+  <div class="flex justify-center w-full h-28 bg-brand-main">
+    <header-logged />
+  </div>
+
+  <div class="flex flex-col items-center justify-center h-64 bg-brand-gray">
+    <h1 class="text-4xl font-black text-center text-gray-800">
+      Feedbakcs
+    </h1>
+    <p class="text-lg text-center text-gray-800 foncredenciaist-regular">
+      Detalhes de todos os feedbacks recebidos.
+    </p>
+  </div>
+
 </template>
 
 <script>
-import { reactive } from '@vue/reactivity'
-import useStore from '../../hooks/useStore'
-const user = useStore('User')
-export default {
-  setup () {
-    const state = reactive({
-      user: user.currentUser
-    })
+import HeaderLogged from '../../components/HeaderLogged'
 
-    return {
-      state
-    }
-  }
+export default {
+  components: { HeaderLogged }
+
 }
 </script>
+
 <style>
 
 </style>
