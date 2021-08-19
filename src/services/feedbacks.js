@@ -10,7 +10,8 @@ export default httpClient => ({
       query.type = type
     }
 
-    const response = httpClient.get('/feedbacks', { params: query })
+    const response = await httpClient.get('/feedbacks', { params: query })
+    console.log(response)
     return { data: response.data }
   },
   getSummary: async () => {

@@ -142,7 +142,7 @@ export default {
 
       if (!errors) {
         window.localStorage.setItem('token', data.token)
-        router.push({ name: 'Feebacks' })
+        router.push({ name: 'Feedbacks' })
         modal.close()
       }
     }
@@ -168,6 +168,7 @@ export default {
 
         state.isLoading = false
       } catch (error) {
+        console.log(error)
         state.isLoading = false
         state.hasErrors = !!error
         toast.error('Ocorreu um erro ao fazer o registro')

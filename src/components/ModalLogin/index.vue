@@ -120,7 +120,7 @@ export default {
 
         if (!errors) {
           window.localStorage.setItem('token', data.token)
-          router.push({ name: 'Feebacks' })
+          router.push({ name: 'Feedbacks' })
           modal.close()
           return
         }
