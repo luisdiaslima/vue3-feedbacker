@@ -7,8 +7,10 @@ import 'animate.css'
 import '@/assets/css/tailwind.css'
 import '@/assets/css/fonts.css'
 import 'vue-toastification/dist/index.css'
+import autofocus from '@undecaf/vue-autofocus'
 
 const app = createApp(App)
 app.use(router)
+app.use(autofocus)
 app.use(Toast, { position: POSITION.BOTTOM_RIGHT })
 app.mount('#app')

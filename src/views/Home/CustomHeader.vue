@@ -7,6 +7,12 @@
       </div>
 
       <div class="flex">
+        <input
+          autofocus
+          type="email"
+          class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-2 border-transparent"
+          placeholder="john@gmail.com"
+        >
         <button
           class="px-6 py-2 font-bold rounded-full text-white focus:outline-none"
           @click="() => emit('create_account')"
