@@ -17,7 +17,6 @@
       <label class="block">
         <span class="text-lg font-medium text-gray-800">E-mail</span>
         <input
-          autofocus
           v-model="state.email.value"
           type="email"
           :class="{

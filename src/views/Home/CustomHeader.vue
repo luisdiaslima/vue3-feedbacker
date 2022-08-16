@@ -8,8 +8,9 @@
 
       <div class="flex">
         <input
+          ref="inputRef"
           autofocus
-          type="email"
+          type="text"
           class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-2 border-transparent"
           placeholder="john@gmail.com"
         >
@@ -55,6 +56,9 @@
 export default {
   setup (_, { emit }) {
     return { emit }
+  },
+  mounted() {
+    this.$refs.inputRef.focus()
   }
 }
 </script>
