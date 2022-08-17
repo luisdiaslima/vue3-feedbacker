@@ -76,6 +76,8 @@ export default {
       const box = openButton.getBoundingClientRect()
       const coordX = box.left + (box.right - box.left) / 2
       const coordY = box.top + (box.bottom - box.top) / 2
+      this.simulateMouseEvent(openButton, 'mousedown', coordX, coordY)
+      this.simulateMouseEvent(openButton, 'mouseup', coordX, coordY)
       this.simulateMouseEvent(openButton, 'click', coordX, coordY)
     },
     simulateMouseEvent(element, eventName, coordX, coordY) {
