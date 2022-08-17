@@ -10,7 +10,6 @@
         <button
           class="px-6 py-2 font-bold rounded-full text-white focus:outline-none"
           id="open-search"
-          @click="redirect"
         >
           open
         </button>
@@ -67,18 +66,19 @@ export default {
     this.onFocusSearchProducts()
   },
   methods: {
-    redirect() {
-      this.$router.push('/dash')
-    },
     onFocusSearchProducts() {
+      const openButton = document.getElementById('open-search')
       const searchInput = document.getElementById('inputRef')
+      openButton.onclick = function () {
+        searchInput.focus()
+      }
 
-      const box = searchInput.getBoundingClientRect()
+      const box = openButton.getBoundingClientRect()
       const coordX = box.left + (box.right - box.left) / 2
       const coordY = box.top + (box.bottom - box.top) / 2
-      this.simulateMouseEvent(searchInput, 'mousedown', coordX, coordY)
-      this.simulateMouseEvent(searchInput, 'mouseup', coordX, coordY)
-      this.simulateMouseEvent(searchInput, 'click', coordX, coordY)
+      this.simulateMouseEvent(openButton, 'mousedown', coordX, coordY)
+      this.simulateMouseEvent(openButton, 'mouseup', coordX, coordY)
+      this.simulateMouseEvent(openButton, 'click', coordX, coordY)
     },
     simulateMouseEvent(element, eventName, coordX, coordY) {
       console.log({ element, eventName, coordX, coordY })
