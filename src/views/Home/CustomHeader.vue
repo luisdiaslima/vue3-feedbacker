@@ -7,9 +7,9 @@
       </div>
 
       <div class="flex">
+        <button id="open-search" v-show="false" />
         <input
-          ref="inputRef"
-          autofocus
+          id="inputRef"
           type="text"
           class="block w-full px-4 py-3 mt-1 text-lg bg-gray-100 border-2 border-transparent"
           placeholder="john@gmail.com"
@@ -58,7 +58,17 @@ export default {
     return { emit }
   },
   mounted() {
-    this.$refs.inputRef.focus()
+    this.onFocusSearchProducts()
+  },
+  methods: {
+    onFocusSearchProducts() {
+      const openButton = document.getElementById('open-search')
+      const searchInput = document.getElementById('inputRef')
+      openButton.onclick = function () {
+        searchInput.focus()
+      }
+      openButton.onclick()
+    }
   }
 }
 </script>
