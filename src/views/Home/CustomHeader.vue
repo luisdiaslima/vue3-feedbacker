@@ -72,7 +72,22 @@ export default {
       openButton.onclick = function () {
         searchInput.focus()
       }
-      // openButton.onclick()
+
+      const box = openButton.getBoundingClientRect()
+      const coordX = box.left + (box.right - box.left) / 2
+      const coordY = box.top + (box.bottom - box.top) / 2
+      this.simulateMouseEvent(openButton, 'click', coordX, coordY)
+    },
+    simulateMouseEvent(element, eventName, coordX, coordY) {
+      console.log({ element, eventName, coordX, coordY })
+      const event = new MouseEvent(eventName, {
+        view: window,
+        bubbles: true,
+        cancelable: true,
+        clientX: coordX,
+        clientY: coordY
+      })
+      element.dispatchEvent(event)
     }
   }
 }
