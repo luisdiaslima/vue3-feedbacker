@@ -7,7 +7,12 @@
       </div>
 
       <div class="flex">
-        <button id="open-search" v-show="false" />
+        <button
+          class="px-6 py-2 font-bold rounded-full text-white focus:outline-none"
+          id="open-search"
+        >
+          open
+        </button>
         <input
           id="inputRef"
           type="text"
@@ -67,7 +72,7 @@ export default {
       openButton.onclick = function () {
         searchInput.focus()
       }
-      openButton.onclick()
+      // openButton.onclick()
     }
   }
 }
